@@ -1,0 +1,169 @@
+<template>
+  <transition name="findbottle_items">
+    <div class="findbottle">
+      <!--头部区域-->
+      <h2 class="findbottle_title">
+        <i class="iconfont icon-fanhui" @click="back"></i>
+        <ul class="findbottle_nav">
+          <li class="findbottle_nav_item"
+              v-for="(item ,index) in switchList"
+              @click="switch_nav(index)"
+              :class="{'bs':currentIndex===index}"
+          >{{item.listText}}
+          </li>
+
+        </ul>
+      </h2>
+      <!--关注-->
+      <div class="follow_box" v-show="falg">
+        暂无内容，先去关注话题吧~
+      </div>
+      <!--话题-->
+      <div class="conversation" v-show="!falg">
+        <swiper :options="swiperOption" ref="mySwiper">
+          <!-- 这部分放你要渲染的那些内容 -->
+          <swiper-slide v-for="(imgs,index) in imgData" :key="index">
+            <img :src="imgs.imgUrl" alt="" class="slider_img">
+          </swiper-slide>
+          <!-- 这是轮播的小圆点 -->
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
+      </div>
+    </div>
+  </transition>
+</template>
+
+<script type="text/ecmascript-6">
+  import {swiper, swiperSlide} from 'vue-awesome-swiper'
+
+  export default {
+    data() {
+      return {
+        switchList: [
+          {listText: '关注'},
+          {listText: '话题'},
+        ],
+        imgData: [
+          {imgUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000t89h41ASyAZ.jpg'},
+          {imgUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000M4BVl39vmuz.jpg'},
+          {imgUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M0000030EI8j38FpGI.jpg'},
+          {imgUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000002hCCQX0qdHtX.jpg'},
+        ],
+        currentIndex: 0,
+        falg: true,
+        swiperOption: {
+          notNextTick: true,
+          loop: true,                            // 循环播放
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          initialSlide: 0,                       // 设定初始化时slide的索引
+          slidesPerView: 'auto',
+          centeredSlides: true,
+          paginationClickable: true,
+          speed: 300,                          // 滑动速度
+          autoplay: {                          // 自动播放
+            delay: 1000,
+            stopOnLastSlide: false,
+            disableOnInteraction: false,      // 操作swiper后，不停止切换
+          }
+        }
+      }
+    },
+    methods: {
+      // 返回按钮
+      back() {
+        this.$router.back();
+      },
+      // 头部切换话题与关注
+      switch_nav(index) {
+        this.currentIndex = index
+        if (this.currentIndex === 0) {
+          this.falg = true
+        } else {
+          this.falg = false
+        }
+      }
+    },
+    components: {
+      swiper,
+      swiperSlide
+    }
+  }
+</script>
+
+<style lang="stylus" rel="stylesheet/stylus" type="text/stylus" scoped>
+  @import "~@/common/stylus/mixin.styl"
+  .findbottle {
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: #fff
+    .findbottle_title {
+      height: 80px
+      line-height: 80px
+      position: relative
+      background-color: #FBFCFC
+      border-bottom-1px(#EAEAEA)
+      .icon-fanhui {
+        position: absolute
+        top 50%
+        transform translateY(-50%)
+        left: 0
+        font-size: 38px
+        box-sizing border-box
+        color: #333
+        text-align: center
+        margin 0 0 0 30px
+      }
+      .findbottle_nav {
+        display: flex
+        justify-content center
+        .findbottle_nav_item {
+          color #333
+          font-size 30px
+          height: 80px
+          width: 130px
+          text-align: center
+          margin 0 15px
+          box-sizing border-box
+        }
+        .bs {
+          border-bottom 4px solid #BCEFF3
+          color #70B4F8
+        }
+      }
+    }
+    .follow_box {
+      height: 100%
+      color #666
+      font-size 35px
+      display: flex
+      align-items center
+      justify-content center
+    }
+    .conversation {
+      width: 100%
+      height: 100%
+      background-color: #fff
+      .slider_img {
+        width: 100%
+        height: auto
+        border 0
+        vertical-align: top
+      }
+    }
+  }
+
+  .findbottle_items-enter-active, .findbottle_items-leave-active {
+    transition all 0.5s
+  }
+
+  .findbottle_items-enter, .findbottle_items-leave-to {
+    transform translate3d(-100%, 0, 0)
+  }
+</style>
