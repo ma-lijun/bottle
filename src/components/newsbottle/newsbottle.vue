@@ -221,11 +221,11 @@
     }
   }
 
-  .newsbottle_items-enter-active, .newsbottle_items-leave-active {
+ /* .newsbottle_items-enter-active, .newsbottle_items-leave-active {
     transition all 0.5s
   }
 
   .newsbottle_items-enter, .newsbottle_items-leave-to {
     transform translate3d(-100%, 0, 0)
-  }
+  }*/
 </style>

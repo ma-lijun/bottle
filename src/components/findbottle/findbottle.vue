@@ -20,21 +20,13 @@
       </div>
       <!--话题-->
       <div class="conversation" v-show="!falg">
-        <swiper :options="swiperOption" ref="mySwiper">
-          <!-- 这部分放你要渲染的那些内容 -->
-          <swiper-slide v-for="(imgs,index) in imgData" :key="index">
-            <img :src="imgs.imgUrl" alt="" class="slider_img">
-          </swiper-slide>
-          <!-- 这是轮播的小圆点 -->
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
+
       </div>
     </div>
   </transition>
 </template>
 
 <script type="text/ecmascript-6">
-  import {swiper, swiperSlide} from 'vue-awesome-swiper'
 
   export default {
     data() {
@@ -50,25 +42,7 @@
           {imgUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000002hCCQX0qdHtX.jpg'},
         ],
         currentIndex: 0,
-        falg: true,
-        swiperOption: {
-          notNextTick: true,
-          loop: true,                            // 循环播放
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          initialSlide: 0,                       // 设定初始化时slide的索引
-          slidesPerView: 'auto',
-          centeredSlides: true,
-          paginationClickable: true,
-          speed: 300,                          // 滑动速度
-          autoplay: {                          // 自动播放
-            delay: 1000,
-            stopOnLastSlide: false,
-            disableOnInteraction: false,      // 操作swiper后，不停止切换
-          }
-        }
+        falg: true
       }
     },
     methods: {
@@ -85,10 +59,6 @@
           this.falg = false
         }
       }
-    },
-    components: {
-      swiper,
-      swiperSlide
     }
   }
 </script>
@@ -159,11 +129,11 @@
     }
   }
 
-  .findbottle_items-enter-active, .findbottle_items-leave-active {
+ /* .findbottle_items-enter-active, .findbottle_items-leave-active {
     transition all 0.5s
   }
 
   .findbottle_items-enter, .findbottle_items-leave-to {
     transform translate3d(-100%, 0, 0)
-  }
+  }*/
 </style>

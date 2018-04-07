@@ -207,12 +207,12 @@
 
   }
 
-  .info_item-enter-active, .info_item-leave-active {
+ /* .info_item-enter-active, .info_item-leave-active {
     transition all 0.5s
   }
 
   .info_item-enter, .info_item-leave-to {
     transform translate3d(-100%, 0, 0)
-  }
+  }*/
 
 </style>
