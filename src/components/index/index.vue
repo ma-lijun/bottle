@@ -3,10 +3,10 @@
     <div class="swiper-container" ref="swiper_item">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="../../common/images/p1-1c.jpg" alt="">
+          <img src="../../common/images/p1-1c.jpg" alt="" class="slide_img">
         </div>
         <div class="swiper-slide">
-          <img src="../../common/images/p1-2c.jpg" alt="">
+          <img src="../../common/images/p1-2c.jpg" alt="" class="slide_img">
         </div>
       </div>
       <!-- 如果需要导航按钮 -->
@@ -87,7 +87,7 @@
     .swiper-container {
       padding-top 90px
       width: 100%
-      img {
+      .slide_img {
         width: 100%
         height: 100%
         vertical-align: top
